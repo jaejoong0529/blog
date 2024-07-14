@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/base::html(main=~{::main})}">
+<body>
+<main class="form">
+    <h2>Login</h2>
+    <form method="post">
+        <p><input type="email" name="username" placeholder="이메일" class="fill"
+                  required autofocus/></p>
+        <p><input type="password" name="password" placeholder="비밀번호" class="fill"
+                  required/></p>
+        <p>
+            <button type="submit">로그인</button>
+            <a th:href="@{/user/signup}">회원가입</a>
+        </p>
+        <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
+    </form>
+    <p th:if="${param.error}" class="warn">이메일이 없거나 비밀번호가 다릅니다.</p>
+</main>
+</body>
+</html>

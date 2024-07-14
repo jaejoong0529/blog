@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Web Programming II</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <style th:replace="${style} ?: _"></style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/user/list}">User</a></li>
+        <li><a th:href="@{/post/list}">Post</a></li>
+        <li th:unless="${session.user}"><a th:href="@{/user/login}">Login</a></li>
+        <li th:if="${session.user}"><a th:href="@{/user/profile}"
+                                       th:text="${session.user.nickname}"></a></li>
+    </ul>
+</nav>
+<main th:replace="${main}"></main>
+</body>
+</html>
