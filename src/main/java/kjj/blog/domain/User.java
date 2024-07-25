@@ -19,6 +19,7 @@ public class User{
     private String username;
     private String password;
     private String nickname;
+    private String email;
     private String phoneNumber;
     private LocalDateTime dateJoined;
     private LocalDateTime lastLogin;
@@ -26,10 +27,11 @@ public class User{
     public User() {
     }
 
-    public User(String username, String password, String nickname, String phoneNumber, LocalDateTime dateJoined, LocalDateTime lastLogin) {
+    public User(String username, String password, String nickname, String email, String phoneNumber, LocalDateTime dateJoined, LocalDateTime lastLogin) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateJoined = dateJoined;
         this.lastLogin = lastLogin;
@@ -47,6 +49,8 @@ public class User{
     public String lastLoginFormatted() {
         return formatted(lastLogin);
     }
+
+
     private String formatted(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(formatter);

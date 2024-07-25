@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<main>
+  <link rel="stylesheet" href="/css/login.css">
+  <h2>Post Edit</h2>
+  <form th:action="@{/post/update}" method="post">
+    <p><input type="text" name="title" th:value="${post.title}" maxlength="255"
+        placeholder="제목" class="fill" required></p>
+    <p><textarea name="content" th:text="${post.content}" cols="40" rows="10"
+        placeholder="내용" class="fill" required></textarea></p>
+    <p>
+      <button type="submit" class="btn btn-success flex-grow-1">저장</button>
+      <button id="btnCancel" type="button" onclick="history.back()">취소</button>
+    </p>
+    <input type="hidden" name="id" th:value="${post.id}"/>
+    <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
+  </form>
+</main>
+</body>
+</html>
+
+

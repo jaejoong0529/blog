@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html th:replace="~{layouts/base::html(main=~{::main})}">
+<html lang="en">
+<link rel="stylesheet" href="/css/login.css">
 <body>
 <main class="form">
-    <h2>Sign Up</h2>
+    <h2>회원가입</h2>
     <form method="post">
         <p><input type="text" name="username" placeholder="아이디" class="fill"
                   required autofocus/></p>
         <p><input type="password" name="password" placeholder="비밀번호" class="fill"
                   required/></p>
         <p><input type="text" name="name" placeholder="이름" class="fill"
+                  required/></p>
+        <p><input type="email" name="email" placeholder="이메일" class="fill"
                   required/></p>
         <p><input type="text" name="nickname" placeholder="닉네임" class="fill"
                   required/></p>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<main>
+  <link rel="stylesheet" href="/css/login.css">
+  <h2>Post Detail</h2>
+  <form th:action="@{/post/delete}" method="post">
+    <p><a th:href="@{/post/list(page=${session.page})}">목록</a>
+      <a th:href="@{/post/update(id=${post.id})}">수정</a>
+      <button type="submit">삭제</button>
+    </p>
+    <input type="hidden" name="id" th:value="${post.id}"/>
+    <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
+  </form>
+  <div class="content">
+    <div class="content-header">
+      <p th:text="|${post.id}. ${post.title}|" class="title"></p>
+      <p>등록시간: <span th:text="${post.pubDateFormatted}"></span>,
+        수정시간: <span th:text="${post.lastModifiedFormatted}"></span>,
+        글쓴이: <a th:href="@{/user/detail(id=${post.user.id})}"
+            th:text="${post.user.nickname}"></a>
+      </p>
+    </div>
+    <p th:text="${post.content}" class="pre-line"></p>
+  </div>
+  <script>
+    document.forms[0].addEventListener('submit', function (event) {
+      if (!confirm("삭제하시겠습니까?")) event.preventDefault()
+    })
+  </script>
+</main>
+</body>
+</html>

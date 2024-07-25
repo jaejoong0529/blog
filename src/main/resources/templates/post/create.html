@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<main>
+  <link rel="stylesheet" href="/css/login.css">
+  <h2>Post Create</h2>
+  <form method="post">
+    <p><input type="text" name="title" maxlength="255" placeholder="제목"
+        class="fill" required></p>
+    <p><textarea name="content" cols="40" rows="10" placeholder="내용"
+        class="fill" required></textarea></p>
+    <p>
+
+      <button type="submit">저장</button>
+      <button id="btnCancel" type="button" onclick="history.back()">취소</button>
+    </p>
+    <input type="hidden" name="_csrf" th:value="${session.csrf}" class="fill"/>
+  </form>
+</main>
+</body>
+</html>

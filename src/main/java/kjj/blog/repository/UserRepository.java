@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     User findByUsername(String username);
+    User findByEmail(String email);
     boolean existsByUsername(String username);
     @Modifying
     @Transactional

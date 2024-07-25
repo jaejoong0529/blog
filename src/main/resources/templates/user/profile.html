@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/css/login.css">
+
+<body>
+<main>
+  <h2>회원 정보</h2>
+  <table class="info" th:object="${session.user}">
+    <tr>
+      <th>번호</th>
+      <td th:text="*{id}"></td>
+    </tr>
+    <tr>
+      <th>아이디</th>
+      <td th:text="*{username}"></td>
+    </tr>
+    <tr>
+      <th>이름</th>
+      <td th:text="*{nickname}"></td>
+    </tr>
+    <tr>
+      <th>가입일시</th>
+      <td th:text="*{dateJoinedFormatted}"></td>
+    </tr>
+    <tr>
+      <th>최근 로그인</th>
+      <td th:text="*{lastLoginFormatted}"></td>
+    </tr>
+  </table>
+  <div>
+    <p>
+      <button type="submit" form="logout">Logout</button>
+      <button type="submit" form="delete">해지</button>
+    </p>
+  </div>
+  <form id="logout" th:action="@{/user/logout}" method="post">
+    <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
+  </form>
+  <form id="delete" th:action="@{/user/delete}" method="post">
+    <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
+  </form>
+  <script>
+    document.forms["delete"].addEventListener('submit', function (event) {
+      if (!confirm("해지하시겠습니까?")) event.preventDefault()
+    })
+  </script>
+</main>
+</body>
+</html>

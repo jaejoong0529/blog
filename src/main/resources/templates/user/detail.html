@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <main class="container">
+        <h2>사용자 상세 정보</h2>
+        <table>
+            <tr>
+                <th>번호</th>
+                <td th:text="${user.id}"></td>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td th:text="${user.username}"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td th:text="${user.nickname}"></td>
+            </tr>
+            <tr>
+                <th>가입일시</th>
+                <td th:text="${user.dateJoinedFormatted}"></td>
+            </tr>
+            <tr>
+                <th>최근 로그인</th>
+                <td th:text="${user.lastLoginFormatted}"></td>
+            </tr>
+        </table>
+        <p>
+            <a href="/" class="btn btn-primary">홈으로</a>
+            <a href="/post/list" class="btn btn-secondary">글 목록으로</a>
+        </p>
+    </main>
+</head>
+</html>

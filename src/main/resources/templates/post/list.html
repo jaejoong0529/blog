@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<main>
+  <link rel="stylesheet" href="/css/login.css">
+  <h2>Post List</h2>
+  <p><a th:href="@{/post/create}">글쓰기</a></p>
+  <p th:replace="~{layouts/pagination::p}"></p>
+  <table class="list">
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>등록일시</th>
+    </tr>
+    <tr th:each="post: ${list.content}">
+      <td th:text="${post.id}">99</td>
+      <td><a th:href="@{/post/detail(id=${post.id})}"
+          th:text="${post.title}"></a>
+      </td>
+      <td><a th:href="@{/user/detail(id=${post.user.id})}"
+          th:text="${post.user.nickname}">김철수</a></td>
+      <td th:text="${post.pubDateFormatted}"></td>
+    </tr>
+  </table>
+</main>
+</body>
+</html>
