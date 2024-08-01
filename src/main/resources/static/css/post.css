@@ -1,0 +1,147 @@
+/* login.css */
+
+body {
+    font-family: Arial, sans-serif; /* 웹 폰트 사용 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9; /* 부드러운 배경색 */
+}
+
+main {
+    width: 80%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff; /* 흰색 배경으로 컨텐츠 강조 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
+
+h2 {
+    border-bottom: 2px solid #1ec800; /* 제목 아래에 강조선 추가 */
+    padding-bottom: 0.5rem;
+    color: #1ec800; /* 네이버 블로그의 파란색 강조 */
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+form {
+    margin: 0;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* 패딩과 테두리 포함한 전체 너비 */
+}
+
+textarea {
+    resize: vertical; /* 세로로만 크기 조정 가능 */
+}
+
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #1ec800; /* 버튼 색상 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #1ec800; /* 버튼 호버 시 색상 */
+}
+
+button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+}
+
+button[type="button"]:hover {
+    background-color: #999; /* 버튼 호버 시 색상 */
+}
+
+a {
+    color: #1ec800;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse; /* 테이블 셀 경계 겹치기 방지 */
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table td {
+    background-color: #fff;
+}
+
+.pagination {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.pagination a {
+    margin: 0 0.5rem;
+    color: #1ec800;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+.content-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.content-header p {
+    margin: 0;
+    color: #555;
+}
+
+.pre-line {
+    white-space: pre-line; /* 줄 바꿈 및 공백 유지 */
+}
+
+.warn {
+    color: #ff0000;
+    font-weight: bold;
+}

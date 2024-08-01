@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<main>
+  <h2>Error</h2>
+  <table class="error info">
+    <tr>
+      <th>상태코드</th>
+      <td th:text="${status}">404</td>
+    </tr>
+    <tr>
+      <th>에러</th>
+      <td th:text="${error}">Not Found</td>
+    </tr>
+    <tr>
+      <th>메시지</th>
+      <td th:text="${message}" class="content">Message</td>
+    </tr>
+  </table>
+</main>
+</body>
+</html>

@@ -2,10 +2,11 @@
 <html lang="en">
 <body>
 <main>
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/post.css">
   <h2>Post Detail</h2>
   <form th:action="@{/post/delete}" method="post">
-    <p><a th:href="@{/post/list(page=${session.page})}">목록</a>
+    <p><a th:href="@{/}">홈으로</a>
+<!--      <a th:href="@{/post/list(page=${session.page})}">목록</a>-->
       <a th:href="@{/post/update(id=${post.id})}">수정</a>
       <button type="submit">삭제</button>
     </p>

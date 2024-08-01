@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="/css/login.css">
-
+<link rel="stylesheet" href="/css/post.css">
 <body>
 <main>
   <h2>회원 정보</h2>
@@ -9,6 +8,7 @@
     <tr>
       <th>번호</th>
       <td th:text="*{id}"></td>
+<!--      *{}는 현재 폼 객체에 바인딩된 속성을 참조할 때 사용-->
     </tr>
     <tr>
       <th>아이디</th>
@@ -29,14 +29,16 @@
   </table>
   <div>
     <p>
-      <button type="submit" form="logout">Logout</button>
+      <button type="submit" form="logout">로그아웃</button>
       <button type="submit" form="delete">해지</button>
     </p>
   </div>
+<!--  @{}는 컨텍스트 경로를 자동으로 포함하여 URL을 생성 링크를 만들 때 사용-->
   <form id="logout" th:action="@{/user/logout}" method="post">
     <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
   </form>
   <form id="delete" th:action="@{/user/delete}" method="post">
+<!--    서버 측에서 전달된 데이터를 템플릿에서 출력할 때 사용, 템플릿에서 변수나 속성의 값을 표시할 때 유용-->
     <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
   </form>
   <script>

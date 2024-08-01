@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/post.css">
+</head>
 <body>
 <main>
-  <link rel="stylesheet" href="/css/login.css">
   <h2>Post Create</h2>
-  <form method="post">
-    <p><input type="text" name="title" maxlength="255" placeholder="제목"
-        class="fill" required></p>
-    <p><textarea name="content" cols="40" rows="10" placeholder="내용"
-        class="fill" required></textarea></p>
+  <form method="post" th:action="@{/post/create}">
+<!--    @{/post/create}는 Thymeleaf의 URL 표현식으로, 서버의 /post/create 경로를 URL로 변환합니다.-->
+<!--    컨텍스트 경로가 변경되더라도 URL을 자동으로 조정, 가독성과 유지보수를 위해 적는것이 좋음-->
     <p>
-
+      <input type="text" name="title" maxlength="255" placeholder="제목" class="fill" required>
+    </p>
+    <p>
+      <textarea name="content" cols="40" rows="10" placeholder="내용" class="fill" required></textarea>
+    </p>
+    <p>
+      <label for="categoryId">카테고리:</label>
+      <select id="categoryId" name="categoryId" required>
+<!--        카테고리를 선택할 수 있는 드롭다운 목록-->
+<!--        categories 목록을 반복하여 각 카테고리를 드롭다운 옵션으로 추가-->
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}">
+        </option>
+      </select>
+    </p>
+    <p>
       <button type="submit">저장</button>
       <button id="btnCancel" type="button" onclick="history.back()">취소</button>
     </p>
@@ -19,3 +35,6 @@
 </main>
 </body>
 </html>
+
+
+

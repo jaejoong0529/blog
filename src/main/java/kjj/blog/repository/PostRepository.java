@@ -1,5 +1,6 @@
 package kjj.blog.repository;
 
+import kjj.blog.domain.Category;
 import kjj.blog.domain.Post;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -22,9 +23,11 @@ public interface PostRepository extends JpaRepository<Post,Long> {
      */
     @Modifying
     @Transactional
-    @Query("update Post set title = :#{#post.title}, content = :#{#post.content} where id = :#{#post.id}")
-    void update(Post post);
+    @Query("update Post p set p.title = :title, p.content = :content, p.category = :category where p.id = :id")
+    void updatePost(Long id, String title, String content, Category category);
+
 
     Slice<Post> findByUserId(Long userId, Pageable pageable);
     List<Post> findAllByOrderByIdDesc();
+    Slice<Post> findByCategoryOrderByPubDateDesc(Category category, Pageable pageable);
 }

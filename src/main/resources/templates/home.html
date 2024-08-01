@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Blog</title>
   <link rel="stylesheet" href="/css/blog.css?v=1.0">
-
+  <!-- 폰트 어썸 사용을 위한 CDN 추가 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <header class="blog-header">
@@ -25,7 +26,8 @@
         <!-- 로그인 상태에 따른 버튼 표시 -->
         <div class="auth-buttons">
           <!-- 로그인 안 된 경우 -->
-          <button th:if="${session.user == null}" class="btn btn-dark" onclick="location.href='/user/login';">로그인</button>
+          <button th:if="${session.user == null}" class="btn btn-dark"
+                  onclick="location.href='/user/login';">로그인</button>
           <!-- 로그인 된 경우 -->
           <button th:if="${session.user != null}" class="btn btn-dark profile-button"
                   onclick="location.href='/user/profile';"
@@ -53,19 +55,19 @@
   <!-- Featured Articles -->
   <section class="featured-articles">
     <div class="article">
-      <img src="book1.jpg" alt="Book 1">
+      <img src="/images/book1.jpg" alt="Book 1">
       <div class="article-info">
         <h3>&lt;쓰게 될 것&gt; 최진영 소설집</h3>
       </div>
     </div>
     <div class="article">
-      <img src="book2.jpg" alt="Book 2">
+      <img src="/images/book2.jpg" alt="Book 2">
       <div class="article-info">
         <h3>[카페] 도도에 오면 마음의 비가 그...</h3>
       </div>
     </div>
     <div class="article">
-      <img src="book3.jpg" alt="Book 3">
+      <img src="/images/book3.jpg" alt="Book 3">
       <div class="article-info">
         <h3>카이, [그래도 ]_선택...</h3>
       </div>
@@ -75,15 +77,10 @@
   <!-- Subcategories -->
   <nav class="subcategories">
     <ul>
-      <li><a href="/category/literature" class="active">문학·책</a></li>
-      <li><a href="/category/movies">영화</a></li>
-      <li><a href="/category/art">미술·디자인</a></li>
-      <li><a href="/category/concerts">공연·전시</a></li>
-      <li><a href="/category/music">음악</a></li>
-      <li><a href="/category/drama">드라마</a></li>
-      <li><a href="/category/entertainment">스타·연예인</a></li>
-      <li><a href="/category/comics">만화·애니</a></li>
-      <li><a href="/category/broadcast">방송</a></li>
+      <!-- 카테고리 리스트를 동적으로 생성 -->
+      <li th:each="category : ${categories}">
+        <a th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name}"></a>
+      </li>
     </ul>
   </nav>
 
@@ -110,16 +107,12 @@
   </table>
 
   <!-- Pagination -->
-  <p class="pagination">
-    <span><a th:if="${not list.isFirst}" href="?page=0">[First]</a>
-    <a th:if="${not list.isFirst}" th:href="|?page=${list.number - 1}|">[Prev]</a></span>
-    <span th:text="|Page: ${list.number}|"></span>
-    <span><a th:if="${not list.isLast}" th:href="|?page=${list.number + 1}|">[Next]</a></span>
-  </p>
+  <p th:replace="~{layouts/pagination::p}"></p>
 </main>
 
 <footer class="blog-footer">
   <!-- Add footer content here -->
+  <p>© 2024 My Blog. All Rights Reserved.</p>
 </footer>
 </body>
 </html>

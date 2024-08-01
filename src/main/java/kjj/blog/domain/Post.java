@@ -2,6 +2,7 @@ package kjj.blog.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -18,17 +19,21 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     private LocalDateTime pubDate;
     private LocalDateTime lastModified;
 
     // 디폴트 생성자
     public Post() {}
 
-    public Post(Long id, String title, String content, User user, LocalDateTime pubDate, LocalDateTime lastModified) {
+    public Post(Long id, String title, String content, User user,Category category, LocalDateTime pubDate, LocalDateTime lastModified) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
+        this.category = category;
         this.pubDate = pubDate;
         this.lastModified = lastModified;
     }
@@ -36,10 +41,10 @@ public class Post {
         return formatted(pubDate);
     }
 
-    // Getter for lastModifiedFormatted
     public String getLastModifiedFormatted() {
         return formatted(lastModified);
     }
+
     private String formatted(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(formatter);

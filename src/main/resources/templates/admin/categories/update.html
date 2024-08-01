@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 수정</title>
+    <link rel="stylesheet" href="/css/post.css">
+
+</head>
+<body>
+<h1>카테고리 수정</h1>
+
+<form action="/admin/categories/update" method="post">
+    <input type="hidden" name="id" th:value="${category.id}">
+
+    <label for="name">카테고리 이름:</label>
+    <input type="text" id="name" name="name" th:value="${category.name}" required>
+
+    <button type="submit">수정 완료</button>
+</form>
+
+<a href="/admin/categories">카테고리 목록으로 돌아가기</a>
+</body>
+</html>

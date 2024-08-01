@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title> List</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/post.css">
 </head>
 <body>
-<h1> List</h1>
-<!-- 여기에 사용자 목록을 출력하는 HTML 코드를 작성할 수 있습니다. -->
+<main>
+    <h2>User List</h2>
+    <p th:replace="~{layouts/pagination::p}"></p>
+<!--    다른 템플릿 파일에서 정의된 pagination 레이아웃을 현재 위치에 포함-->
+    <table class="list">
+<!--       <tr>는 테이블의 행(row)을 정의합니다.-->
+        <tr>
+            <th>번호</th>
+            <th>이메일</th>
+            <th>이름</th>
+            <th>가입일시</th>
+        </tr>
+<!--        <td> 요소는 테이블의 각 데이터 셀을 정의합니다.-->
+<!--        list는 Page<User> 객체를 나타내며, list.content는 현재 페이지의 사용자 목록을 포함하는 List<User>를 나타냄-->
+        <tr th:each="user: ${list.content}">
+            <td th:text="${user.id}">번호</td>
+            <td><a th:href="@{/user/detail(id=${user.id})}"><span
+                    th:text="${user.username}">아이디</span></a></td>
+            <td th:text="${user.nickname}">닉네임</td>
+            <td th:text="${user.dateJoinedFormatted}">가입일시</td>
+        </tr>
+    </table>
+</main>
 </body>
 </html>

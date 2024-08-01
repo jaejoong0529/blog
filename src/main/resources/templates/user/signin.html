@@ -7,6 +7,8 @@
     <form method="post">
         <p><input type="text" name="username" placeholder="아이디" class="fill"
                   required autofocus/></p>
+<!--        autofocus 속성은 페이지가 로드될 때 자동으로 이 필드에 포커스-->
+<!--        <p>는 HTML에서 "paragraph"의 약자로, 문단을 정의-->
         <p><input type="password" name="password" placeholder="비밀번호" class="fill"
                   required/></p>
         <p><input type="text" name="name" placeholder="이름" class="fill"
@@ -22,7 +24,9 @@
         </p>
         <input type="hidden" name="_csrf" th:value="${session.csrf}"/>
     </form>
-    <p th:if="${param.error}" class="warn">이메일이 존재합니다.</p>
+<!--    <p th:if="${param.error}" class="warn">아이디가 존재합니다.</p>-->
+    <p th:if="${error}" class="warn" th:text="${error}">아이디가 존재합니다.</p>
+<!--    플래시 속성이 존재할 때만 이 문단을 렌더링-->
 </main>
 </body>
 </html>

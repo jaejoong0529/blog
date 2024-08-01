@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 관리</title>
+    <link rel="stylesheet" href="/css/post.css">
+
+</head>
+<body>
+<h1>카테고리 관리</h1>
+
+<a href="/admin/categories/create">새 카테고리 추가</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>작업</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="category : ${categories}">
+        <tr>
+            <td th:text="${category.id}">1</td>
+            <td th:text="${category.name}">문화</td>
+            <td>
+                <a th:href="@{/admin/categories/update(id=${category.id})}">수정</a>
+                <form action="/admin/categories/delete" method="post" th:object="${category}" style="display:inline;">
+                    <input type="hidden" th:value="${category.id}" name="id">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+<a href="/">홈으로 돌아가기</a>
+</body>
+</html>
