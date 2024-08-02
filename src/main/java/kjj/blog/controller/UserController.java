@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
-
-@Controller // View를 반환하기위해 사용
+//MVC방식 html HTML 페이지를 생성하고 반환하는 방식
+//@Controller // View를 반환하기위해 사용
 @RequiredArgsConstructor//final인 필드 값만 파라미터로 받는 생성자
 //final: 초기화 후 값 변경 불가
 //없을경우에 public UserController{UserRepository userRepository...

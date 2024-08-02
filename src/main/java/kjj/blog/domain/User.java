@@ -30,6 +30,7 @@ public class User{
         // 지연로딩: 데이터베이스와 관련된 ORM(Object-Relational Mapping) 프레임워크에서 자주 사용되는 개념, 객체가 실제로 필요할 때까지 로딩을 지연
         //3)객체를 빈(bean)으로 관리할 때 디폴트 생성자를 사용
     }
+    //@AllArgsConstructor 사용하면 생략
     public User(String username, String password, String nickname, String email, String phoneNumber, LocalDateTime dateJoined, LocalDateTime lastLogin) {
         //매개변수 생성자: 사용자 정보를 인자로 받아 초기화하는 생성자
         // 새로운 User 객체를 생성할 때 필요한 모든 정보를 한 번에 설정
