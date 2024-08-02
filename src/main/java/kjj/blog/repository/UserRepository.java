@@ -18,4 +18,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("update User u set u.lastLogin = :lastLogin where u.id = :id")//리포지토리 인터페이스의 메서드에 직접 쿼리를 정의합니다.
     void updateLastLogin(Long id, LocalDateTime lastLogin);
     //`@Param`어노테이션에서 사용되는 매개변수의 이름을 지정합니다.
+
 }
