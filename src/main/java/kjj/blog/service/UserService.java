@@ -21,8 +21,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-@Slf4j // Slf4j 어노테이션 추가
+@Transactional//서비스에서는 Transactional사용
+@Slf4j // Slf4j 어노테이션 추가  로그사용
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.existsByUsername(username);
     }
 
-//    public void registerUser(UserDto userDto) {
+//    public void registerUser(UserDto userDto) { ->UserConverter사용으로 축약
 //        User user = new User();
 //        user.setUsername(userDto.getUsername());
 //        user.setPassword(passwordEncoder.encode(userDto.getPassword()));

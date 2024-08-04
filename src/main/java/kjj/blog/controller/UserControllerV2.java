@@ -39,9 +39,10 @@ public class UserControllerV2 {
 
     // 유저 목록 조회
     @GetMapping
-    public ResponseEntity<List<UserDto>> list(@RequestParam(name = "page", defaultValue = "0") int page) {
+    public ResponseEntity<List<UserDto>> list(@RequestParam(name = "page", defaultValue = "0") int page,HttpSession session) {
         //ResponseEntity<List<UserDto>>: 메서드가 반환하는 타입
         //ResponseEntity는 HTTP 응답을 감싸는 클래스로 List<UserDto>가 응답 본문으로 포함
+        session.setAttribute("page",page);
         Pageable pageable = PageRequest.of(page, 10);
         Page<User> users = userRepository.findAll(pageable);
         List<UserDto> userDTOs = users.getContent().stream()

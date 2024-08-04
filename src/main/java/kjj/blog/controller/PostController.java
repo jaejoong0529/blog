@@ -19,13 +19,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-@Controller
+//@Controller
 @RequiredArgsConstructor
 public class PostController {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
-
+    /** 글목록 */
     @GetMapping("/")
     public String home(@RequestParam(name = "page", defaultValue = "0") int page, HttpSession session,Model model) {
         session.setAttribute("page", page);
@@ -41,7 +41,7 @@ public class PostController {
 
         return "home";
     }
-
+    /** 카테고리별 글목록  */
     @GetMapping("/category/{id}")//{id} 변수에 해당하는 값을 메서드의 매개변수로 전달받는다.
     public String category(@PathVariable Long id, @RequestParam(name = "page", defaultValue = "0") int page, HttpSession session,Model model) {
         session.setAttribute("page",page);
@@ -55,7 +55,7 @@ public class PostController {
         model.addAttribute("page", page);
         return "category/detail";
     }
-
+    /** 글목록  */
     @GetMapping("/post/list")
     public String list(@RequestParam(name = "page", defaultValue = "0") int page, HttpSession session, Model model) {
         session.setAttribute("page", page); // 현재 페이지를 세션에 저장
