@@ -12,6 +12,16 @@ public class UserConverter {
 
     // User엔티티를 UserDto로 변환하는 메서드
     public static UserDto toDto(User user) {
+        //return UserDto.builder()
+        //                .id(user.getId())
+        //                .username(user.getUsername())
+        //                .nickname(user.getNickname())
+        //                .email(user.getEmail())
+        //                .phoneNumber(user.getPhoneNumber())
+        //                .dateJoined(user.dateJoinedFormatted())
+        //                .lastLogin(user.lastLoginFormatted())
+        //                .build();
+        //    }
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
@@ -21,10 +31,18 @@ public class UserConverter {
         userDto.setDateJoined(user.dateJoinedFormatted());
         userDto.setLastLogin(user.lastLoginFormatted());
         return userDto;
+
     }
 
     // UserDto를 User엔티티로 변환하는 메서드
     public static User fromDto(UserDto userDto) {
+        // return User.builder()
+        //                .id(userDto.getId()) // id 필드 추가
+        //                .username(userDto.getUsername())
+        //                .nickname(userDto.getNickname())
+        //                .email(userDto.getEmail())
+        //                .phoneNumber(userDto.getPhoneNumber())
+        //                .build();
         User user = new User();
         user.setId(userDto.getId());
         user.setUsername(userDto.getUsername());

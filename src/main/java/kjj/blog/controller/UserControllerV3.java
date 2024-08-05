@@ -19,12 +19,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 //리펙토링해서 서비스로 나눈 컨트롤러
 //추가로 로그랑 UserConverter 헬퍼 클래스생성
-//@RestController
+@RestController
 @RequestMapping("/api/users")
 @Slf4j
 public class UserControllerV3 {
 
-    private final UserService userService;
+    private final UserService userService;//서비스와 컨트롤러 구분
 
     public UserControllerV3(UserService userService) {
         this.userService = userService;
@@ -46,7 +46,7 @@ public class UserControllerV3 {
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody UserDto userDto) {
         log.info("Attempting to register user with username: {}", userDto.getUsername()); // 로그 추가
-        if (userService.userExistsByUsername(userDto.getUsername())) {
+        if (userService.existsByUsername(userDto.getUsername())) {
             log.warn("Username already exists: {}", userDto.getUsername()); // 경고 로그 추가
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
         }
@@ -61,12 +61,16 @@ public class UserControllerV3 {
                                         @RequestParam("password") String password,
                                         HttpSession session) {
         log.info("Attempting to log in with username: {}", username); // 로그 추가
-        Optional<User> userOptional = userService.findUserByUsername(username);
+        Optional<User> userOptional = userService.findByUsername(username);
         if (userOptional.isPresent() && userService.passwordMatches(password, userOptional.get().getPassword())) {
             User user = userOptional.get();
             session.setAttribute("user", user);
             user.setLastLogin(LocalDateTime.now());
-            userService.updateUserLastLogin(user.getId(), user.getLastLogin());
+            //빌더 사용시
+//            User updatedUser = user.toBuilder()
+//                    .lastLogin(LocalDateTime.now()) // lastLogin 업데이트
+//                    .build();
+            userService.updateLastLogin(user.getId(), user.getLastLogin());
             log.info("Login successful for username: {}", username); // 로그 추가
             return ResponseEntity.ok("Login successful");
         } else {

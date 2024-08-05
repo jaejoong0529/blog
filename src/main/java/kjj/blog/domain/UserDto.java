@@ -1,10 +1,12 @@
 package kjj.blog.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
+@Setter //setter는 지양하는것이 좋음
+//@Builder
 public class UserDto {
     private Long id;
     private String username;

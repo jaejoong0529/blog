@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +32,7 @@ public class User{
         //3)객체를 빈(bean)으로 관리할 때 디폴트 생성자를 사용
     }
     //@AllArgsConstructor 사용하면 생략
+   // @Builder
     public User(String username, String password, String nickname, String email, String phoneNumber, LocalDateTime dateJoined, LocalDateTime lastLogin) {
         //매개변수 생성자: 사용자 정보를 인자로 받아 초기화하는 생성자
         // 새로운 User 객체를 생성할 때 필요한 모든 정보를 한 번에 설정

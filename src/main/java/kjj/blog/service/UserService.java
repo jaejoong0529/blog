@@ -29,7 +29,7 @@ public class UserService {
     private final JavaMailSender mailSender;
 
     // 사용자 이름으로 사용자가 존재하는지 확인하는 메서드
-    public boolean userExistsByUsername(String username) {
+    public boolean existsByUsername(String username) {
         log.info("Checking if user exists by username: {}", username); // 로그 추가
         return userRepository.existsByUsername(username);
     }
@@ -52,18 +52,25 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setDateJoined(LocalDateTime.now());
         user.setLastLogin(user.getDateJoined());
+        //builder사용시
+//        User user = UserConverter.fromDto(userDto).toBuilder()
+//                .password(passwordEncoder.encode(userDto.getPassword())) // Encrypt the password
+//                .dateJoined(LocalDateTime.now()) // Set current time as the join date
+//                .lastLogin(LocalDateTime.now())  // Set current time as the last login time
+//                .build();
         userRepository.save(user);
         log.info("User registered successfully: {}", userDto.getUsername()); // 로그 추가
     }
 
     // 사용자 이름으로 사용자를 찾는 메서드
-    public Optional<User> findUserByUsername(String username) {
+    public Optional<User> findByUsername(String username) {//null값 처리하기위해 Optional사용
         log.info("Finding user by username: {}", username); // 로그 추가
         return Optional.ofNullable(userRepository.findByUsername(username));
+        //null이면 Optional.empty()를 반환하고, 아니면 Optional 객체를 생성
     }
 
     // 사용자의 마지막 로그인 시간을 업데이트하는 메서드
-    public void updateUserLastLogin(Long userId, LocalDateTime lastLogin) {
+    public void updateLastLogin(Long userId, LocalDateTime lastLogin) {
         log.info("Updating last login for user ID: {}", userId); // 로그 추가
         userRepository.updateLastLogin(userId, lastLogin);
     }

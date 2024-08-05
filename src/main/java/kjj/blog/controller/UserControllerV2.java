@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController//RestApi를 위해 Controller대신 RestController사용
+//@RestController//RestApi를 위해 Controller대신 RestController사용
 @RequestMapping("/api/users")//전체적으로 주소를 /api/users로 시작
 @RequiredArgsConstructor// final인 필드값만 파라미터로 받는 생성자
 public class UserControllerV2 {
@@ -52,7 +52,7 @@ public class UserControllerV2 {
                 //.stream(): List<User>를 스트림으로 변환하여 다양한 스트림 연산을 수행할 수 있게 합니다.
                 .map(this::convertToDto)
                 //User 객체를 UserDto 객체로 변환합니다. convertToDto는 사용자 엔티티를 DTO로 변환하는 메서드
-                .collect(Collectors.toList());
+                .toList();  //collect(Collectors.toList());
         //.collect(Collectors.toList()): 변환된 DTO들을 List<UserDto>로 수집합니다.
         return ResponseEntity.ok(userDTOs);
         //ResponseEntity.ok(userDTOs): 변환된 사용자 DTO 리스트를 포함한 HTTP 200 OK 응답을 생성하여 반환
